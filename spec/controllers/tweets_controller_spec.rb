@@ -75,19 +75,19 @@ RSpec.describe TweetsController, type: :controller do
 
   describe 'GET /users/:username/tweets' do
     it 'renders tweets by username' do
-      user1 = FactoryBot.create(:user, username: 'user1', email: 'user1@user.com')
-      user2 = FactoryBot.create(:user, username: 'user2', email: 'user2@user.com')
+      user_1 = FactoryBot.create(:user, username: 'user_1', email: 'user_1@user.com')
+      user_2 = FactoryBot.create(:user, username: 'user_2', email: 'user_2@user.com')
 
-      tweet1 = FactoryBot.create(:tweet, user: user1)
-      FactoryBot.create(:tweet, user: user2)
+      tweet_1 = FactoryBot.create(:tweet, user: user_1)
+      tweet_2 = FactoryBot.create(:tweet, user: user_2)
 
-      get :index_by_user, params: { username: user1.username }
+      get :index_by_user, params: { username: user_1.username }
 
       expect(response.body).to eq({
         tweets: [
           {
-            id: tweet1.id,
-            username: user1.username,
+            id: tweet_1.id,
+            username: user_1.username,
             message: 'Test Message'
           }
         ]
